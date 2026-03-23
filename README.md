@@ -37,6 +37,15 @@ terraform init
 terraform apply
 ```
 
+For multi cluster setup you can pass a list of environments:
+
+```bash
+terraform init
+terraform apply -var='environments=["dev","uat","prod"]'
+```
+
+Argo CD will only be installed into the dev cluster as we can deploy to multiple clusters from one ArgoCD instance 
+
 ### 2. Access the ArgoCD UI
 
 Since the service is internal, use kubectl to port-forward the API server to your local machine:

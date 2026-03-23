@@ -34,3 +34,5 @@ terraform.rc
 
 # Ingnore Kind provider files
 dev-cluster-config
+uat-cluster-config
+prod-cluster-config

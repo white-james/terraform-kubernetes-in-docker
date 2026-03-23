@@ -1,6 +1,7 @@
 # Create a cluster
 resource "kind_cluster" "default" {
-    name = "dev-cluster"
+  for_each = toset(var.environments)
+    name = join("-", [each.value, "cluster"])
     wait_for_ready = true
 
     kind_config {
@@ -10,15 +11,15 @@ resource "kind_cluster" "default" {
       node {
           role = "control-plane"
 
-          extra_port_mappings {
-              container_port = 80
-              host_port      = 80
-          }
-          extra_port_mappings {
-              container_port = 443
-              host_port      = 443
-          }
+ # Only add port mappings if the environment is "dev"
+      dynamic "extra_port_mappings" {
+        for_each = each.key == "dev" ? [80, 443] : []
+        content {
+          container_port = extra_port_mappings.value
+          host_port      = extra_port_mappings.value
+        }
       }
+    }
   }
 }
 
