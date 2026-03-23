@@ -1,6 +1,6 @@
 # Local ArgoCD Deployment with Terraform & Kind
 
-This project automates the creation of a local Kubernetes environment using **Kind** and installs **ArgoCD** using the Terraform **Helm** provider.
+This project automates the creation of a local Kubernetes environment using **Kind** (Kubernetes In Docker) and installs **ArgoCD** using the Terraform **Helm** provider.
 
 ## 🚀 What this repository does
 
